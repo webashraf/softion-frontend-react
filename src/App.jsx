@@ -1,9 +1,10 @@
+import SingleProduct from "./pages/SingleProduct";
 
 const App = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+     <SingleProduct /> 
+    </>
   );
 };
 

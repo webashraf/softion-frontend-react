@@ -1,10 +1,10 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import blackWatch from '../assets/watch-black.png';
 import blueWatch from '../assets/watch-blue.png';
 import cyanWatch from '../assets/watch-cyan.png';
 import purpleWatch from '../assets/watch-purple.png';
-const ColorRadios = ({setCurrentImage}) => {
-  const [selectedColor, setSelectedColor] = useState("purple"); 
+const ColorRadios = ({setCurrentImage, setSelectedColor, selectedColor}) => {
+  
 
   const handleColorChange = (e) => {
     const selectedColor = e.target.value;

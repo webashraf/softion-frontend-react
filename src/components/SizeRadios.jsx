@@ -1,7 +1,6 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 
-const SizeRadios = () => {
-  const [selectedSize, setSelectedSize] = useState("S"); // Initial selected size
+const SizeRadios = ({selectedSize, setSelectedSize}) => {
 
   const handleSizeChange = (e) => {
     setSelectedSize(e.target.value);

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import minus from '../assets/minus.png';
 import plus from '../assets/plus.png';
@@ -7,8 +8,14 @@ import ColorRadios from '../components/ColorRadios';
 import SizeRadios from '../components/SizeRadios';
 
 const SingleProduct = () => {
+  const [cart, setCart] = useState([])
+  const [title, setTitle] = useState("Classy Modern Smart Watch");
+  const [price, setPrice] = useState(79.00)
   const [quantity, setQuantity] = useState(1);
   const [currentImage, setCurrentImage] = useState(purpleWatch);
+  const [color, setColor] = useState('purple');
+  const [size, setSize] = useState('S');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const handleQuantityChange = (type) => {
     setQuantity((prev) => {
       if (type === 'increment') return prev + 1;
@@ -16,7 +23,12 @@ const SingleProduct = () => {
       return prev;
     });
   };
-
+  
+  const handleAddToCart = () => {
+  const item ={title, price, qty: quantity, image: currentImage, color, size};
+  setCart([...cart, item]);
+}
+console.log(cart);
   return (
     <div className="relative pt-5 pb-20">
       <div className="lg:w-[1280px] w-full mx-auto lg:px-0 px-5">
@@ -34,7 +46,7 @@ const SingleProduct = () => {
           {/* Product Details */}
           <div className="lg:w-[50%]">
             <h2 id="title" className="text-[40px] text-[#364A63] font-bold">
-              Classy Modern Smart Watch
+              {title}
             </h2>
 
             {/* Reviews */}
@@ -56,7 +68,7 @@ const SingleProduct = () => {
                   $999.00
                 </span>
                 <span id="price" className="text-[#6576FF] font-bold">
-                  $79.00
+                  ${price.toFixed(2)}
                 </span>
               </h3>
               <p className="text-[18px] text-[#8091A7] leading-loose">
@@ -78,8 +90,8 @@ const SingleProduct = () => {
               </span>
             </div>
 
-            <ColorRadios setCurrentImage={setCurrentImage} />
-            <SizeRadios />
+            <ColorRadios setCurrentImage={setCurrentImage} selectedColor={color} setSelectedColor={setColor}  />
+            <SizeRadios selectedSize={size} setSelectedSize={setSize} />
 
             {/* Quantity and Actions */}
             <div className="flex items-center gap-3 mt-[20px]">
@@ -107,7 +119,7 @@ const SingleProduct = () => {
               </div>
 
               <button
-                id="addToCart"
+                onClick={handleAddToCart}
                 className="bg-[#6576FF] hover:bg-[#6576FF]/95 py-[8px] px-[18px] flex items-center justify-center font-semibold text-white transition-transform duration-150 active:scale-95 rounded-[3px]"
                 type="submit"
               >
@@ -122,19 +134,19 @@ const SingleProduct = () => {
       </div>
 
       {/* Checkout Button */}
-      <button
-        id="checkOutBtn"
-        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#FFBB5A] hover:bg-[#FFBB5A]/90 text-gray-800 font-semibold px-[24px] py-[8px] rounded-[20px] shadow-lg shadow-[#0000001A] z-10 hidde min-h-[42px] min-w-[139px]"
+      {cart.length ? <button
+        onClick={() =>setIsModalOpen(true)}
+        className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-[#FFBB5A] hover:bg-[#FFBB5A]/90 text-gray-800 font-semibold px-[24px] py-[8px] rounded-[20px] shadow-lg shadow-[#0000001A] z-10  min-h-[42px] min-w-[139px] ${isModalOpen && "hidden"}`}
       >
         <span className="text-[#364A63]">Checkout</span>
         <span
           id="checkoutCount"
           className="ml-2 bg-white text-[14px] font-bold rounded-lg px-2 py-0.5 leading-none"
         >
-          0
+          {cart.length}
         </span>
-      </button>
-      <CartModal />
+      </button> : ""}
+      {isModalOpen && <CartModal setIsModalOpen={setIsModalOpen} products={cart} />}
     </div>
   );
 };

@@ -34,9 +34,9 @@ console.log(cart);
   return (
     <div className="relative pt-5 lg:pt-0 pb-20 lg:pb-0">
       <div className="lg:w-[1280px] w-full mx-auto lg:px-0 px-5">
-        <div className="flex items-center lg:flex-row flex-col justify-center gap-[60px] lg:h-screen">
+        <div className="flex lg:items-center lg:flex-row flex-col justify-center lg:gap-[60px] gap-10 lg:h-screen">
           {/* Product Image */}
-          <div className="max-w-[630px] h-[721px]">
+          <div className="lg:max-w-[630px] lg:h-[721px]">
             <img
               id="productImage"
               src={currentImage}

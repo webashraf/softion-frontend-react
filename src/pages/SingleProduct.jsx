@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import minus from '../assets/minus.png';
 import plus from '../assets/plus.png';
 import purpleWatch from '../assets/watch-purple.png';
@@ -31,7 +32,7 @@ const SingleProduct = () => {
   }
 console.log(cart);
   return (
-    <div className="relative pt-5 pb-20">
+    <div className="relative pt-5 lg:pt-0 pb-20 lg:pb-0">
       <div className="lg:w-[1280px] w-full mx-auto lg:px-0 px-5">
         <div className="flex items-center lg:flex-row flex-col justify-center gap-[60px] lg:h-screen">
           {/* Product Image */}
@@ -52,12 +53,12 @@ console.log(cart);
 
             {/* Reviews */}
             <div className="flex items-center gap-2 mt-[10px]">
-              <div className="text-[#FFD200]">
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star"></i>
-                <i className="fa-solid fa-star-half-stroke"></i>
-                <i className="fa-regular fa-star"></i>
+              <div className="flex items-center gap-1 text-[#FFD200]">
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStarHalfAlt />
+              <FaRegStar />
               </div>
               <div className="text-[#8091A7] font-light">(2 Reviews)</div>
             </div>

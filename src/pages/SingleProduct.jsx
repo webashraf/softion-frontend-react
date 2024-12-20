@@ -25,9 +25,10 @@ const SingleProduct = () => {
   };
   
   const handleAddToCart = () => {
-  const item ={title, price, qty: quantity, image: currentImage, color, size};
-  setCart([...cart, item]);
-}
+    const item ={title, price, qty: quantity, image: currentImage, color, size};
+    setCart([...cart, item]);
+    setQuantity(1);
+  }
 console.log(cart);
   return (
     <div className="relative pt-5 pb-20">
